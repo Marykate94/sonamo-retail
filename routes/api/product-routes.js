@@ -6,32 +6,22 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // get all products
 router.get('/', (req, res) => {
   // find all products
-  Product.findAll({
-    include: [{
-      // model: Product,
-      // through: {
-      //   attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
-      //   where: {completed: true}
-      // },
-      model: Category, 
-      through: { 
-        attributes: ['id', 'category_name'],
-        where: { completed: true }
-      },
-      model: Tag,
-      through: {
-        attributes: ['id', 'tag_name'],
-        where: { completed: true }
-      }
-    }]
+  Product.findAll({  //Select statement
+
+        include: [
+          Category, {
+            model: Tag,
+            through: ProductTag
+          }
+        ]
+    
   }).then(dbProductData => res.json(dbProductData))
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
   });
   // be sure to include its associated Category and Tag data
-});
-
+})
 // get one product
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
@@ -39,18 +29,12 @@ router.get('/:id', (req, res) => {
     where: {
       id: req.params.id
     },
-    include: [
-      {
-      model: Category,
-      through: {
-      attributes: ['id', 'category_name'],
-      },
-      model: Tag, 
-      through: {
-      attributes: ['id', 'tag_name']
-      }
-    }
-    ]
+        include: [
+          Category, {
+            model: Tag,
+            through: ProductTag
+          }
+        ]
   })
   .then(dbProductData => {
     if (!dbProductData) {
@@ -142,6 +126,8 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+  Product.destroy() // have to pass through deleting one id that is identified otherwise will delete enture table
+
 });
 
 module.exports = router;

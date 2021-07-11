@@ -15,10 +15,12 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new tag
+  // create
 });
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
+
 });
 
 router.delete('/:id', (req, res) => {

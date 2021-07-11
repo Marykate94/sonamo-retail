@@ -55,3 +55,4 @@ Product.init(
 );
 
 module.exports = Product;
+// create table

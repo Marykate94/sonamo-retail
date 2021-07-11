@@ -12,9 +12,23 @@ router.get('/', (req, res) => {
       through: {
         attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
         where: {completed: true}
+      },
+      model: Category, 
+      through: { 
+        attributes: ['id', 'category_name'],
+        where: { completed: true }
+      },
+      model: Tag,
+      through: {
+        attributes: ['id', 'tag_name'],
+        where: { completed: true }
       }
     }]
-  }).then()
+  }).then(dbProductData => res.json(dbProductData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
   // be sure to include its associated Category and Tag data
 });
 

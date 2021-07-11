@@ -8,11 +8,11 @@ router.get('/', (req, res) => {
   // find all products
   Product.findAll({
     include: [{
-      model: Product,
-      through: {
-        attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
-        where: {completed: true}
-      },
+      // model: Product,
+      // through: {
+      //   attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+      //   where: {completed: true}
+      // },
       model: Category, 
       through: { 
         attributes: ['id', 'category_name'],
@@ -38,7 +38,19 @@ router.get('/:id', (req, res) => {
   Product.findOne({
     where: {
       id: req.params.id
+    },
+    include: [
+      {
+      model: Category,
+      through: {
+      attributes: ['id', 'category_name'],
+      },
+      model: Tag, 
+      through: {
+      attributes: ['id', 'tag_name']
+      }
     }
+    ]
   })
   .then(dbProductData => {
     if (!dbProductData) {

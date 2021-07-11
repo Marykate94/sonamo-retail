@@ -17,7 +17,6 @@ Category.init(
       type: DataTypes.STRING,
       allowNull: false
     }
-    //should hooks be used?
     },
   {
     sequelize,

@@ -42,13 +42,15 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  // create a new category
-  // Category.create(req.body)
-  // .then((category) => {
-  //   if (req.body.categoryIds.length) {
-  //     const categoryIdArr = req.body.
-  //   }
-  // })
+  create a new category
+  Category.create(req.body)({
+    id: req.body.id,
+    categoryName: red.body.category_name
+  }).then(dbCategoryData => res.json(dbCategoryData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
 });
 
 router.put('/:id', (req, res) => {

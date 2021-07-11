@@ -1,1 +1,0 @@
-# sonamo-retail

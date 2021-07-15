@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
             through: ProductTag
           }
         ]
-    
   }).then(dbProductData => res.json(dbProductData))
   .catch(err => {
     console.log(err);

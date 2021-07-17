@@ -38,7 +38,7 @@
   Tested GET, POST, PUT, DELETE routes in Insomnia. 
 
   ## Questions
-  Made by Marykate Smith. 
+  Made by Marykate Smith. Worked on with Dillon Walsh and Jillian Amelung.
 
 
   Find me on GitHub at https://github.com/Marykate94. 
